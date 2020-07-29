@@ -13,7 +13,7 @@ router.get(
     "/callback",
     passport.authenticate("google"),
     (req,res) => {
-        res.redirect("http://localhost:5000");
+        res.redirect("/");
     }
 );
 
