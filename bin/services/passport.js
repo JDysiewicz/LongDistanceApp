@@ -1,38 +1,57 @@
 const passport = require("passport");
-const keys = process.env || require("../../secrets/keys.js");
-const mongoose = require("mongoose");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const pool = require("./postgresConfig.js");
+const generatePartnerCode = require("../../helper/generatePartnerCode.js");
+// Deployment!
+const keys = process.env;
 
-const User = mongoose.model("user");
+// // Dev
+// const keys = require("../../secrets/keys.js")  || process.env;
 
-passport.serializeUser( (user, done) => {
-    done(null, user.id);
-});
 
-passport.deserializeUser( async (id, done) => {
-    const user = await User.findById(id);
-    done(null, user);
-});
+const GoogleStrategy = require("passport-google-oauth20");
+
 
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: "/auth/google/callback"
-}, async (accessToken, refreshToken, profile, done) => {
-    const existingUser = await User.findOne({googleId: profile.id});
+}, async(accessToken, refreshToken, profile, done) => {
 
-    if (existingUser){
-        console.log("User in DB")
-        return done(null, existingUser);
-    };
+    // Checks if user already exists in database
+    pool.query(
+        `SELECT * FROM users WHERE google_id=$1`,
+        [profile.id],
+        (err, res) => {
+            if (err) return console.error(err);
+            if (res.rows.length > 0){
+                console.log("Existing User", res.rows);
+                done(null, res.rows[0]);
+            } else {
 
-    const newUser = await new User({
-        googleId: profile.id,
-        familyName: profile.name.familyName,
-        givenName: profile.name.givenName
-    }).save();
+                // If not creates new user and generates their partner code
+                let partnerCode = generatePartnerCode();
+                pool.query(
+                    `INSERT INTO users(google_id,family_name,given_name,partner_code) VALUES($1,$2,$3,$4) RETURNING *`,
+                    [profile.id, profile.name.familyName, profile.name.givenName, partnerCode],
+                    (err, res) => {
+                        if (err) return console.error(err);
+                        console.log("User Added!", res.rows);
+                        done(null,res.rows[0]);
+                    }
+                );
 
-    console.log("User created");
-    return done(null, newUser);
+            }
+        }
+    );    
 })
 );
+
+// Used to stuff a piece of information into a cookie
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+// Used to decode the received cookie and persist session
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});

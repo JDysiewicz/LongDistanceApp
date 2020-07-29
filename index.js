@@ -1,23 +1,24 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const keys = process.env || require("./secrets/keys.js");
+
+// DEPLOYMENT
+const keys = process.env;
+
+// // Dev!
+// const keys = require("./secrets/keys.js");
+
+
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
-require("./models/User.js");
 require("./bin/services/passport.js");
-
-mongoose.connect(keys.mongoURI)
-
 
 const app = express();
 
-app.use(
-    cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
-    })
-);
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
+    keys: [keys.cookieKey]
+}));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -26,7 +27,12 @@ const authRouter = require("./bin/routes/authRouter.js");
 const userApiRouter = require("./bin/routes/userApiRouter.js");
 
 app.get("/", (req,res) => {
-    res.send("test");
+    if(!req.isAuthenticated()){
+        res.send("NOT logged in")
+    } else {
+        const user = req.user;
+        res.send(`Welcome ${user.given_name}, your partner code is ${user.partner_code}`);
+    };
 });
 
 app.use("/auth/google", authRouter);
