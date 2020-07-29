@@ -1,3 +1,5 @@
+
+// Dev vs Prod environment
 const env = process.env.NODE_ENV || "development";
 let keys;
 if(env === "development"){
@@ -6,11 +8,13 @@ if(env === "development"){
     keys = process.env;
 };
 
-const { Pool } = require("pg");
 
+// Connect pool to online elephant SQL postgresql database.
+const { Pool } = require("pg");
 const conString = keys.postgresURI;
 const pool = new Pool({
     connectionString: conString
 });
+
 
 module.exports = pool;

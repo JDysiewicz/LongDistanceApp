@@ -1,3 +1,4 @@
+-- Reference only; table creation done externally in elephantSQL
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     google_id VARCHAR(64),
