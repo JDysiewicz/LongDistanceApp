@@ -9,7 +9,7 @@ router.use("/current_user", (req,res) => {
 
 router.use("/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
 });
 
 module.exports = router;

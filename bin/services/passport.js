@@ -1,11 +1,18 @@
+const env = process.env.NODE_ENV || "development";
+let keys;
+if(env === "development"){
+    keys = require("../../secrets/keys.js")
+} else {
+    keys = process.env;
+};
+
 const passport = require("passport");
 const pool = require("./postgresConfig.js");
 const generatePartnerCode = require("../../helper/generatePartnerCode.js");
-// Deployment!
-const keys = process.env;
 
-// // Dev
-// const keys = require("../../secrets/keys.js")  || process.env;
+
+
+
 
 
 const GoogleStrategy = require("passport-google-oauth20");

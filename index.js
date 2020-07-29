@@ -1,12 +1,13 @@
+
+const env = process.env.NODE_ENV || "development";
+let keys;
+if(env === "development"){
+    keys = require("./secrets/keys.js")
+} else {
+    keys = process.env;
+};
+
 const express = require("express");
-
-// DEPLOYMENT
-const keys = process.env;
-
-// // Dev!
-// const keys = require("./secrets/keys.js");
-
-
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
@@ -28,10 +29,20 @@ const userApiRouter = require("./bin/routes/userApiRouter.js");
 
 app.get("/", (req,res) => {
     if(!req.isAuthenticated()){
-        res.send("NOT logged in")
+        res.send(
+            `<span>Please Login:</span>
+            <form action="/auth/google">
+                <input type="submit" value="Login with Google" />
+            </form>`
+        );
     } else {
         const user = req.user;
-        res.send(`Welcome ${user.given_name}, your partner code is ${user.partner_code}`);
+        res.send(
+            `<span>Welcome ${user.given_name}, your partner code is ${user.partner_code}!</span>
+            <form action="/api/logout">
+                <input type="submit" value="Logout" />
+            </form>`
+            );
     };
 });
 
