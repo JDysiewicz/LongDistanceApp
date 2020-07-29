@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const keys = require("./secrets/keys.js") || process.env;
+const keys = process.env || require("./secrets/keys.js");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
