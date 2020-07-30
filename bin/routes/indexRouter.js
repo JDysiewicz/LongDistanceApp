@@ -4,11 +4,13 @@ const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 
+
+// A lot of this is temporary to test out the account linking feature
 router.get("/", (req,res) => {
     if(!req.isAuthenticated()){
         res.send(
             `<span>Please Login:</span>
-            <form action="/auth/google">
+            <form method="GET" action="/auth/google">
                 <input type="submit" value="Login with Google" />
             </form>`
         );
@@ -16,7 +18,7 @@ router.get("/", (req,res) => {
         const user = req.user;
         res.send(
             `<span>Welcome ${user.given_name}, your Partner Code is ${user.partner_code}!</span>
-            <form action="/api/logout">
+            <form method="POST" action="/api/logout">
                 <input type="submit" value="Logout" />
             </form>
 
@@ -34,19 +36,23 @@ router.get("/", (req,res) => {
                 const user = req.user;
                 res.send(
                     `<span>Welcome ${user.given_name}, your Partner Code is ${user.partner_code}!</span>
-                    <form action="/api/logout">
+                    <form method="POST" action="/api/logout">
                         <input type="submit" value="Logout">
                     </form>
         
                     <br>
         
-                    <span>Pending Response from ${req.user.sent_request}...</span>`
+                    <span>Pending Response from ${req.user.sent_request}...</span>
+                    <form method="POST" action="/api/remove-request">
+                        <input type="submit" value="Remove Request">
+                    </form>
+                    `
                 )
         } else if (req.user.has_partner === null && req.user.sent_request === null && req.user.has_request !== null) {
             const user = req.user;
             res.send(
                 `<span>Welcome ${user.given_name}, your Partner Code is ${user.partner_code}!</span>
-                <form action="/api/logout">
+                <form method="POST" action="/api/logout">
                     <input type="submit" value="Logout">
                 </form>
     
@@ -55,6 +61,10 @@ router.get("/", (req,res) => {
                 <span>Request From: ${req.user.has_request}</span>
                 <form method="POST" action="/api/partner-up">
                     <input type="submit" value="Accept">
+                </form>
+                
+                <form method="POST" action="/api/decline-request">
+                    <input type="submit" value="Decline">
                 </form>`
             )
         } else if(req.user.has_partner !== null){
