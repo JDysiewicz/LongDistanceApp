@@ -2,10 +2,13 @@
 - STEPS:
 1) Get server up and running.
 2) Get google strategy from passport (all in passport.js file).
+
 ```
 const GoogleStrategy = require("passport-google-oauth20");
 ```
+
 3) implement strategy, providing ID, secret, and callback.
+
 ```
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -17,6 +20,7 @@ passport.use(new GoogleStrategy({
 4) Persist to database using postgres/mongo etc,; call done(null, <USER_OBJECT>) when done.
 
 5) Serialize and Deserialize user.
+
 ```
 // Used to stuff a piece of information into a cookie
 passport.serializeUser((user, done) => {
@@ -28,7 +32,9 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 ```
+
 6) Over in the index.js file, implement cookieSession to enable sessions
+
 ```
 const cookieSession = require("cookie-session");
 const passport = require("passport");
@@ -44,12 +50,14 @@ app.use(cookieSession({
 ```
 
 7) Initialize passport to use and track sessions.
+
 ```
 app.use(passport.initialize());
 app.use(passport.session());
 ```
 
 8) auth routes for authentication and the callback - getting authenticated takes two arguments in the passport.authenticate("google") part - also takes the scope. Callback URL takes a res,req instead of the scope.
+
 ```
 router.get("/",
     passport.authenticate("google",
@@ -67,6 +75,7 @@ router.get(
 ```
 
 9) Now user info is stored in the req.user element.
+
 ```
 router.use("/current_user", (req,res) => {
     res.send(req.user);
@@ -77,6 +86,7 @@ router.use("/current_user", (req,res) => {
 
 ## Misc
 - Production vs Development keys via:
+
 ```
 const env = process.env.NODE_ENV || "development";
 let keys;

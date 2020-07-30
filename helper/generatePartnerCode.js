@@ -1,4 +1,3 @@
-
 // Helper function to generate the partner codes as 9 number strings
 function generatePartnerCode(){
     let codeArr = [];
