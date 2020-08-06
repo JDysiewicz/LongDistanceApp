@@ -1,0 +1,21 @@
+.background-splash{
+    background-color: aliceblue;
+    
+}
+
+.textheader-nickanme-online{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto
+}
+
+.textheader-pp{
+    margin-left: auto;
+}
+
+.textheader-main-body{
+    display: flex;
+    justify-content: center;
+}

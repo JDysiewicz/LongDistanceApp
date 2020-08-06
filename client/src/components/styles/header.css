@@ -1,0 +1,25 @@
+.header-home{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aliceblue;
+    padding:20px;
+}
+
+.header-log-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-profile-h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

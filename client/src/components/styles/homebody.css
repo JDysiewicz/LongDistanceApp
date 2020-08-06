@@ -1,0 +1,14 @@
+.home-body-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    
+}
+
+.home-textchat-container{
+    width: 50%;
+}
+
+.home-calendar-container{
+    width: 50%;
+}
