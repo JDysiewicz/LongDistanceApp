@@ -24,7 +24,7 @@ class Home extends Component{
         } else{
             return (
                 <div>
-                    <Header />
+                    <Header user={this.state.user} partner={this.state.partner} />
                     <HomeBody user={this.state.user} partner={this.state.partner}/>
                 </div>
             );

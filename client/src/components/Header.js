@@ -3,11 +3,18 @@ import "./styles/header.css";
 import LogoutButton from "./LogoutButton.js";
 import DepartnerButton from "./DepartnerButton.js";
 
-const Header = () => {
+const Header = (props) => {
     return(
         <div className="header-home">
-            <div className="header-profile-h1">
-                <h1>Your Profile</h1>
+
+            <div className="user-partner-info">
+                <div className="header-profile-h1">
+                    <h1>User: {props.user.given_name} {props.user.family_name}</h1>
+                </div>
+
+                <div className="header-partner-h1">
+                    <h1>Partner: {props.partner.given_name} {props.partner.family_name}</h1>
+                </div>
             </div>
 
             <div className="header-logo">

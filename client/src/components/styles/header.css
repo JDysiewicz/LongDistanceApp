@@ -18,6 +18,16 @@
     align-items: center;
 }
 
+.header-partner-h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-partner-info{
+    display: block;
+}
+
 .header-logo{
     display: flex;
     justify-content: center;

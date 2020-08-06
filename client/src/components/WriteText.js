@@ -18,16 +18,18 @@ class WriteText extends Component{
     async handleSubmit(e){
 
         e.preventDefault();
-        const resultPost = await axios({
-            method: "POST",
-            url: "/api/messages",
-            params: {
-                message: this.state.input
-            }
-        }).catch(err => console.error(err));
-        if(resultPost.status !== 200) return console.error(resultPost.status);
-        this.setState({input:""});
-        console.log("success!");
+        if(this.state.input.trim().length){
+            const resultPost = await axios({
+                method: "POST",
+                url: "/api/messages",
+                params: {
+                    message: this.state.input
+                }
+            }).catch(err => console.error(err));
+            if(resultPost.status !== 200) return console.error(resultPost.status);
+            this.setState({input:""});
+            console.log("success!");
+        };
     };
 
     render(){

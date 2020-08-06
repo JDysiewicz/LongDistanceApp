@@ -12,10 +12,10 @@ class HomeBody extends Component{
                 <div className="ui segment home-textchat-container">
                     <TextChat user={this.state.user} partner={this.state.partner}/>
                 </div>
-
+{/* 
                 <div className="ui segment home-calendar-container">
                     <Calendar user={this.state.user} partner={this.state.partner} />
-                </div>
+                </div> */}
             </div>
         );
     };
