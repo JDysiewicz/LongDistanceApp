@@ -9,6 +9,18 @@ router.get("/current_user", (req,res) => {
     res.send(req.user);
 });
 
+router.get("/partner",  (req,res) => {
+    pool.query(
+        `SELECT * FROM users WHERE partner_code=$1`,
+        [req.user.has_partner],
+        (err, results) => {
+            if(err) return console.error(err);
+            const partner = results.rows[0];
+            res.send(partner)
+        }
+    );
+});
+
 router.post("/logout", (req, res) => {
     req.logout();
     res.redirect("/");

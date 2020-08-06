@@ -12,7 +12,13 @@ if(env === "development"){
 const express = require("express");
 const app = express();
 
-
+// CORS stuff
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    next();
+});
 
 // Passport/Cookie Session setup
 const passport = require("passport");
@@ -31,6 +37,7 @@ const authRouter = require("./bin/routes/authRouter.js");
 const userApiRouter = require("./bin/routes/userApiRouter.js");
 const indexRouter = require("./bin/routes/indexRouter.js");
 const homeRouter = require("./bin/routes/homeRouter.js");
+const messagesApiRouter = require("./bin/routes/messagesApiRotuer.js");
 
 
 // Use each router
@@ -38,6 +45,7 @@ app.use("/auth/google", authRouter);
 app.use("/api", userApiRouter);
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
+app.use("/api/messages", messagesApiRouter);
 
 
 module.exports = app;

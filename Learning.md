@@ -100,3 +100,12 @@ if(env === "development"){
 ## Struggles
 - Originally started with MongoDB - had to refactor it to involve postgres instead as the data would be better suited to relational means. This was hard because I originally learned it all via MongoDB and it has a unique `user.id` property when using a Model class of User. Could also assign `User.findOne()` to a variable. When doing this with a `pool.query` it didn't work, so I had to figure out how to pass information from the queries to `done`, then on to `seralizeUser`/`deserializeUser`, then on to the `req.user` object. This also involved learning what the cookies actually did and how they were stored. This gave me a better understanding of how session storage works via cookies - still not too sure on how the encryption with the `cookieKey` works though.
 
+## Front end stuff
+- Hooking up backend and front end was harder than expected - was originally rendering HTMl with the backend so it was easy to do database calls and such within that before rendering it.
+- Had to use react router to sort out the routing, and using the backend as purely an API
+- Getting info from calling the API when logged in - prehaps some secutrity concerns here and perhaps needs to be cleaned up (e.g all the `res.send()` stuff in the indexRouter/userRouter stuff )
+- A lot of react stuff learned from Stephen Grider's course - no redux or hooks right now but I can always refactor after I've been through those sections in the course.
+- My css is so bad lmao - had to relook up everything
+- MOCK UPS ARE SO USEFUL! Give a really good idea of what to do first
+    - It's 100% worth it to spend 2 days doing zero coding to get a clear idea, then code, rather than just jumping right into it
+    - For front end at least - probably a similar plan for backend - workflow perhaps rather than drawing a mockup?
