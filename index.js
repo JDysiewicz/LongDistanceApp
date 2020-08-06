@@ -38,21 +38,22 @@ app.use(passport.session());
 // Routers
 const authRouter = require("./bin/routes/authRouter.js");
 const userApiRouter = require("./bin/routes/userApiRouter.js");
-const indexRouter = require("./bin/routes/indexRouter.js");
-const homeRouter = require("./bin/routes/homeRouter.js");
-const messagesApiRouter = require("./bin/routes/messagesApiRotuer.js");
+const messagesApiRouter = require("./bin/routes/messagesApiRouter.js");
 
 
 // Use each router
 app.use("/auth/google", authRouter);
 app.use("/api", userApiRouter);
-// app.use("/", indexRouter);
-// app.use("/home", homeRouter);
 app.use("/api/messages", messagesApiRouter);
 
-app.use(express.static(path.join(__dirname, '/client/build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"))
-});
+
+// For Production
+if(env !== "development"){
+    app.use(express.static(path.join(__dirname, '/client/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, "build", "index.html"))
+    });
+};
+
 
 module.exports = app;

@@ -10,8 +10,9 @@ router.get("/", (req,res) => {
     const thisUserCode = req.user.partner_code;
     pool.query(
         `SELECT * FROM messages
-        WHERE (sender_partner_code = $1 OR sender_partner_code = $2)
-        AND (sender_partner_code = $1 OR sender_partner_code = $2)`,
+        WHERE (sender_partner_code = $1 AND recipient_partner_code = $2)
+        OR (sender_partner_code = $2 AND recipient_partner_code = $1)
+        ORDER BY time_sent`,
         [partnersCode, thisUserCode],
         (err, results) => {
             if(err) console.error(err);
@@ -21,6 +22,7 @@ router.get("/", (req,res) => {
 });
 
 router.post("/" , urlencodedParser, (req,res) => {
+    console.log("post thing", req.session._ctx.)
     const partnersCode = req.user.has_partner;
     const thisUserCode = req.user.partner_code;
     const message = req.query.message;
@@ -34,7 +36,6 @@ router.post("/" , urlencodedParser, (req,res) => {
         }
     )
 });
-
 
 
 
