@@ -9,9 +9,11 @@ if(env === "development"){
 
 const path = require("path");
 
+
 // Create express app
 const express = require("express");
 const app = express();
+
 
 // CORS stuff
 app.use(function(req, res, next) {
@@ -44,13 +46,13 @@ const messagesApiRouter = require("./bin/routes/messagesApiRotuer.js");
 // Use each router
 app.use("/auth/google", authRouter);
 app.use("/api", userApiRouter);
-app.use("/", indexRouter);
-app.use("/home", homeRouter);
+// app.use("/", indexRouter);
+// app.use("/home", homeRouter);
 app.use("/api/messages", messagesApiRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'))
-  });
-  
+});
+
 module.exports = app;
