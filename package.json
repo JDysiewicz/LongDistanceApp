@@ -9,9 +9,7 @@
   },
   "scripts": {
     "start": "node ./bin/server.js",
-    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "client-install": "npm install --prefix client",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
