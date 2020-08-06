@@ -22,7 +22,6 @@ router.get("/", (req,res) => {
 });
 
 router.post("/" , urlencodedParser, (req,res) => {
-    console.log("post thing", req.session._ctx.)
     const partnersCode = req.user.has_partner;
     const thisUserCode = req.user.partner_code;
     const message = req.query.message;
