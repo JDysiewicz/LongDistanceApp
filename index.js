@@ -7,6 +7,7 @@ if(env === "development"){
     keys = process.env;
 };
 
+const path = require("path");
 
 // Create express app
 const express = require("express");
@@ -47,5 +48,9 @@ app.use("/", indexRouter);
 app.use("/home", homeRouter);
 app.use("/api/messages", messagesApiRouter);
 
-
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+  });
+  
 module.exports = app;
