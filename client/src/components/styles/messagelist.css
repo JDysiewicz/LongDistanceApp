@@ -17,4 +17,5 @@
     max-width: 100%;
     min-width: 100%;
     overflow: scroll;
+    overflow-x: hidden;
 }

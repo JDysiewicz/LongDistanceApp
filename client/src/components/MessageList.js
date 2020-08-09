@@ -1,56 +1,36 @@
-import React, { Component } from "react";
+import React, { useRef, useEffect } from "react";
 import "./styles/messagelist.css";
 import Message from "./Message.js";
-import axios from "axios";
 
-class MessageList extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            user: this.props.user,
-            partner: this.props.partner,
-            messageList: []
-        };
-    };
+const MessageList = (props) => {
+    const scrollRef = useRef(null);
 
+    useEffect( () => {
+        props.scroll(scrollRef.current);
+    }, [props.messages]);
 
-    componentDidMount(){
-        axios.get("/api/messages")
-         .then(res => this.setState({messageList: res.data}))
-          .catch(err => console.error(err));
-    };
-
-    componentDidUpdate(){
-        axios.get("/api/messages")
-         .then(res => {
-             this.setState({messageList: res.data});
-            })
-         .catch(err => console.error(err));
-    };
-
-    render(){
-        return(
+    return(
             <div className="messagelist-body-main">
                 <div className="ui segment messagelist-body-list" >
-                    <ul className="message-list ui comments" ref={this.scrollRef} >
+                    <ul className="message-list ui comments">
+                    
                         {
-                            this.state.messageList.map(msg => {
+                            props.messages.map(msg => {
                                 return (
                                     <Message
-                                        user = {this.props.user}
-                                        partner = {this.props.partner}
-                                        key={msg.id}
-                                        sender={msg.sender_partner_code}
+                                        key={msg.id ? msg.id : Math.random().toString() + new Date().toLocaleString("en-GB")}
+                                        sender={msg.sender_partner_code === props.user.partner_code ? props.user.given_name : props.partner.given_name}
                                         time={msg.time_sent}
                                         messageInfo={msg.message} />
                                     )
                             })
                         }
+                        <br></br>
+                        <div className="scroll-to" ref={scrollRef}></div>
                     </ul>
                 </div>
             </div>
-        );
-    };
+    );
 };
 
 
