@@ -28,7 +28,6 @@ const passport = require("passport");
 require("./bin/services/passport.js");
 const cookieSession = require("cookie-session");
 app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
     keys: [keys.cookieKey]
 }));
 app.use(passport.initialize());
