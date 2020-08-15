@@ -36,8 +36,8 @@ passport.use(new GoogleStrategy({
                 // If not creates new user and generates their partner code
                 let partnerCode = generatePartnerCode();
                 pool.query(
-                    `INSERT INTO users(google_id,family_name,given_name,partner_code) VALUES($1,$2,$3,$4) RETURNING *`,
-                    [profile.id, profile.name.familyName, profile.name.givenName, partnerCode],
+                    `INSERT INTO users(google_id,family_name,given_name,partner_code, nickname) VALUES($1,$2,$3,$4, $5) RETURNING *`,
+                    [profile.id, profile.name.familyName, profile.name.givenName, partnerCode, profile.name.givenName],
                     (err, res) => {
                         if (err) return console.error(err);
                         console.log("User Added!", res.rows);

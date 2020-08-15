@@ -7,5 +7,6 @@ CREATE TABLE users(
     partner_code VARCHAR(64) UNIQUE,
     has_partner VARCHAR(64) DEFAULT NULL,
     sent_request VARCHAR(64) DEFAULT NULL,
-    has_request VARCHAR(64) DEFAULT NULL
+    has_request VARCHAR(64) DEFAULT NULL,
+    nickname VARCHAR(64)
 );
