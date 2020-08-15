@@ -13,7 +13,7 @@ class TextHeader extends Component{
 
     render(){
         return(
-            <div className="textheader-main-body background-splash ui">
+            <div className="textheader-main-body background-splash">
             
                     <div className="textheader-nickanme">
                         <h2>Chat with {this.state.partner.nickname}</h2>

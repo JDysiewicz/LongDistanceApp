@@ -1,0 +1,13 @@
+.home-body-container{
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+
+
+.home-textchat-container{
+    min-width: 60%;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}

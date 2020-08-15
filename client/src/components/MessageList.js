@@ -21,6 +21,7 @@ const MessageList = (props) => {
                                         key={msg.id ? msg.id : Math.random().toString() + new Date().toLocaleString("en-GB")}
                                         sender={msg.sender_partner_code === props.user.partner_code ? props.user.nickname : props.partner.nickname}
                                         time={msg.time_sent}
+                                        user={props.user}
                                         messageInfo={msg.message} />
                                     )
                             })

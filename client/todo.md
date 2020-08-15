@@ -2,6 +2,8 @@
 - Nickname feature - people able to change it; add nickname to user in postgres?
     - Add it to the users nickname table i guess? Clear it after they departner and make it default to their given name
     - Would be similar to the current `WriteText` implementation - almost exactly the same tbh, just need to refactor `TextHeader` into a hooks component, then implement the same ordered component structure as with `WriteText` (Update the input field with the state of the input etc...) then call a `updateNickname` event with the person who's nickname needs updating.
+    - Decided to implement it via regex by writting a command as a message `!myNick=<nickname> ; !partnerNick=<nickname>` - BUG is that it requires a full logout to refresh the `user` session - don't know how to avoid that other than introducing a piece of state for every component which uses the nickname that will update if the nickname is updated....
+    - Pretty rudamentry atm; need to find a way to update it, and to properly send a message from an admin saying that nicknames have been updated
 
 - Profile Picture from `this.state.partner` - add profile pic to postgres and then API
     - OR Make a seperate table?

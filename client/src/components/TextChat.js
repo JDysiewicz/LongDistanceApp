@@ -6,8 +6,9 @@ import MessageList from "./MessageList.js";
 import WriteText from "./WriteText.js";
 import io from "socket.io-client";
 import axios from "axios";
+import "../components/styles/textchat.css";
 // Client side socket behaviour
-const ENDPOINT = "limitless-sands-03990.herokuapp.com";
+const ENDPOINT = "limitless-sands-03990.herokuapp.com/";
 
 let socket = io(ENDPOINT);
 
@@ -60,7 +61,8 @@ const TextChat = (props) => {
         };
     });
 
-    // Message event firing multiple times
+    // Run whenever messages updated - if only run at setup will replace the messages array with a new message every time and not append it
+    // Still not too sure on why it wouldnt work to add an event handler on the inital setup, then not update it until the page is reloaded - why is a new event handler needed every time to prevent the whole messages array reloading?
     useEffect( () =>{
         socket.on("message", (message) => {
             setMessages([...messages, message]);
@@ -89,7 +91,7 @@ const TextChat = (props) => {
     };
 
     return(
-        <div> 
+        <div className="main-content"> 
             <TextHeader user={user} partner={partner} />
             <MessageList user={user} partner={partner} messages={messages} scroll={(scrollRef) => scrollToBottom(scrollRef)}/>
             <WriteText user={user} partner={partner} message={message} setMessage={setMessage} sendMessage={sendMessage} />
