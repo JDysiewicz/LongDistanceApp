@@ -6,7 +6,7 @@ Backend server: run "npm start" in the root of the project.
 Client CRA server: run "npm start" in the client directory of the project.
 Opens on localhost5000, or alternatively access via heroku : https://limitless-sands-03990.herokuapp.com/
 Must add an account via partner code system to beign chatting, the other must accept this request.
-To change nicknames, type the commands "!myNick=<nickname>" or "!partnerNick=<nickanme>" without the "<>" characters, and send the message.
+To change nicknames, type the commands "!myNick=\<nickname\>" or "!partnerNick=\<nickanme\>" without the "<>" characters, and send the message.
 
 ## Known bugs
 - Must refresh the page to see the request from another account
