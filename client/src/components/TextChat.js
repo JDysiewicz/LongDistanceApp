@@ -9,6 +9,7 @@ import axios from "axios";
 import "../components/styles/textchat.css";
 // Client side socket behaviour
 const ENDPOINT = "limitless-sands-03990.herokuapp.com/";
+// const ENDPOINT = "localhost:5000";
 
 let socket = io(ENDPOINT);
 
@@ -95,6 +96,13 @@ const TextChat = (props) => {
             <TextHeader user={user} partner={partner} />
             <MessageList user={user} partner={partner} messages={messages} scroll={(scrollRef) => scrollToBottom(scrollRef)}/>
             <WriteText user={user} partner={partner} message={message} setMessage={setMessage} sendMessage={sendMessage} />
+            <div className="user-partner-info">
+                <div className="header-profile-h1">
+                    <p>User: {props.user.given_name} {props.user.family_name}, Your nickname: {props.user.nickname}</p>
+                    <br></br>
+                    <p>Partner: {props.partner.given_name} {props.partner.family_name}, Partner nickname: {props.partner.nickname} </p>
+                </div>
+            </div>
         </div>
     );
 };

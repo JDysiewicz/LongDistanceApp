@@ -23,7 +23,7 @@ class Home extends Component{
             return <div></div>
         } else{
             return (
-                <div>
+                <div style={{maxWidth:"100vw", maxHeight:"10vh"}}>
                     <Header user={this.state.user} partner={this.state.partner} />
                     <HomeBody user={this.state.user} partner={this.state.partner}/>
                 </div>

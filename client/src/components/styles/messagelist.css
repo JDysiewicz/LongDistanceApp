@@ -1,4 +1,3 @@
-
 .message-list{
     margin: auto;
     max-height: 100em;
@@ -13,4 +12,10 @@
     min-width: 100%;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+.ui.comments {
+    margin: 0px;
+    max-width: 650px;
+    list-style: none;
 }

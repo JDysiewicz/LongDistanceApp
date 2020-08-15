@@ -12,7 +12,7 @@ const MessageList = (props) => {
     return(
             <div className="messagelist-body-main">
                 <div className="ui segment messagelist-body-list" >
-                    <ul className="message-list ui comments">
+                    <div className="message-list ui comments">
                     
                         {
                             props.messages.map(msg => {
@@ -28,7 +28,7 @@ const MessageList = (props) => {
                         }
                         <br></br>
                         <div className="scroll-to" ref={scrollRef}></div>
-                    </ul>
+                    </div>
                 </div>
             </div>
     );
