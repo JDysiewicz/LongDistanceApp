@@ -3,7 +3,9 @@ const pool = require("../services/postgresConfig.js");
 const router = Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
-const urlencodedParser = bodyParser.urlencoded({extended: false})
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+const multer = require("multer");
+const upload = multer({dest: "../client/public/images"});
 
 router.get("/current_user", (req,res) => {
     res.send(req.user);
@@ -89,6 +91,21 @@ router.post("/decline-request", (req,res) => {
         }
     );
 });
+
+router.post("/changepic", upload.single("avatar"), (req, res) => {
+    const user = req.user.partner_code;
+    pool.query(
+        `UPDATE users SET avatar=$1 WHERE partner_code=$2 RETURNING *`,
+        [req.file.filename, user],
+        (err, results) => {
+            if (err) console.error(err);
+            console.log("Profile picture updated", results.rows);
+            return res.redirect("/");
+        }
+    );
+});
+
+
 
 // DePartner the couple
 router.post("/departner", (req,res) => {

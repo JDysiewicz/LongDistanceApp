@@ -13,7 +13,7 @@ const path = require("path");
 // Create express app
 const express = require("express");
 const app = express();
-
+const { static } = require("express");
 
 // CORS stuff
 app.use(function(req, res, next) {
@@ -44,6 +44,9 @@ const messagesApiRouter = require("./bin/routes/messagesApiRouter.js");
 app.use("/auth/google", authRouter);
 app.use("/api", userApiRouter);
 app.use("/api/messages", messagesApiRouter);
+
+// The images route will recreate images found in the /uploads folder
+app.use("/images", static("./images"));
 
 
 // For Production
