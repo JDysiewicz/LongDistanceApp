@@ -29,6 +29,7 @@ const MessageList = (props) => {
                                             sender={msg.sender_partner_code === props.user.partner_code ? props.user.nickname : props.partner.nickname}
                                             time={msg.time_sent}
                                             user={props.user}
+                                            partner={props.partner}
                                             messageInfo={msg.message} />
                                     )
                                 }

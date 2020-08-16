@@ -110,6 +110,8 @@ if(env === "development"){
 
 - I think the biggest take away is that I really should have setup all the socket stuff on the very home page, and pass down the socket info via props in react app. That way I could control all events from the very top level and pass them down through the tree - could end up being bloated though so I guess this is what Redux is for. Right now If I want to, say, change a nickname, I have to pass that up to the top level, and pass the new nickname event down through everything. Or I might just need to pass it once and it will trickle down automatically via re-rendering of components... could be something to look in to.
 
+- Profile pics done! Ended up just using `Multer` to store images on disk and then giving the `<img>` tags in react access to that file to get images from (16/08/2020)
+
 ## Front end stuff
 - Hooking up backend and front end was harder than expected - was originally rendering HTMl with the backend so it was easy to do database calls and such within that before rendering it.
 - Had to use react router to sort out the routing, and using the backend as purely an API

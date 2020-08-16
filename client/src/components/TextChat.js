@@ -103,6 +103,16 @@ const TextChat = (props) => {
                     <p>Partner: {props.partner.given_name} {props.partner.family_name}, Partner nickname: {props.partner.nickname} </p>
                 </div>
             </div>
+
+            <div className="image upload">
+
+                <form method="POST" action="/api/changepic" enctype="multipart/form-data">
+                    <label for="avatar"></label>
+                    <input id="file-upload" name="avatar" type="file"></input>
+                    <input type="submit" value="Change profile picture"></input>
+                </form>
+
+            </div>
         </div>
     );
 };
