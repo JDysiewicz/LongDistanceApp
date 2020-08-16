@@ -13,4 +13,4 @@ To change nicknames, type the commands "!myNick=\<nickname\>" or "!partnerNick=\
 - After accepting a request will be automatically sent to "/home", however will display an error. Refreshing the page fixes this, and this only occurs on the inital acceting of the request.
   - Fixed [x]
 - Nicknames do not update until relogging - could fix by restructuring of the sockets; make it on a higher level and feed the socket info down, then update everything through that.
-- For some reason, all messages are left aligned on some mobile devices despite not being on others/computers.
+- For some reason, all message containers are left aligned on some mobile devices despite not being on others/computers.
