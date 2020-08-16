@@ -16,14 +16,22 @@ const MessageList = (props) => {
                     
                         {
                             props.messages.map(msg => {
-                                return (
-                                    <Message
-                                        key={msg.id ? msg.id : Math.random().toString() + new Date().toLocaleString("en-GB")}
-                                        sender={msg.sender_partner_code === props.user.partner_code ? props.user.nickname : props.partner.nickname}
-                                        time={msg.time_sent}
-                                        user={props.user}
-                                        messageInfo={msg.message} />
+                                if(msg.admin){
+                                    return (
+                                        <div style={{textAlign: "center"}} className="admin-message-div">
+                                            <span className="admin-message-content">Admin: {msg.message}</span>
+                                        </div>
                                     )
+                                } else {
+                                    return (
+                                        <Message
+                                            key={msg.id ? msg.id : Math.random().toString() + new Date().toLocaleString("en-GB")}
+                                            sender={msg.sender_partner_code === props.user.partner_code ? props.user.nickname : props.partner.nickname}
+                                            time={msg.time_sent}
+                                            user={props.user}
+                                            messageInfo={msg.message} />
+                                    )
+                                }
                             })
                         }
                         <br></br>

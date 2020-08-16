@@ -93,7 +93,7 @@ const TextChat = (props) => {
 
     return(
         <div className="main-content"> 
-            <TextHeader user={user} partner={partner} />
+            <TextHeader user={user} partner={partner} socket={socket}/>
             <MessageList user={user} partner={partner} messages={messages} scroll={(scrollRef) => scrollToBottom(scrollRef)}/>
             <WriteText user={user} partner={partner} message={message} setMessage={setMessage} sendMessage={sendMessage} />
             <div className="user-partner-info">

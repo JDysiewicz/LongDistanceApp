@@ -16,3 +16,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.online{
+    background-color: lime;
+}
+
+.offline{
+    background-color: red;
+}
+
+.status{
+    padding: 2px;
+}

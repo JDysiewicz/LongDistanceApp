@@ -105,7 +105,7 @@ router.post("/departner", (req,res) => {
 
             // De partner 1 in the users table
             pool.query(
-                `UPDATE users SET has_partner=$1, sent_request=$1, has_request=$1 WHERE partner_code=$2 RETURNING *`,
+                `UPDATE users SET has_partner=$1, sent_request=$1, nickname=given_name, has_request=$1 WHERE partner_code=$2 RETURNING *`,
                 [null, partnersCode],
                 (err, results) => {
                     if (err) return console.error(err);
@@ -113,7 +113,7 @@ router.post("/departner", (req,res) => {
         
                     // De partner 2 in the users table
                     pool.query(
-                    `UPDATE users SET has_partner=$1, sent_request=$1, has_request=$1 WHERE partner_code=$2 RETURNING *`,
+                    `UPDATE users SET has_partner=$1, sent_request=$1, nickname=given_name, has_request=$1 WHERE partner_code=$2 RETURNING *`,
                     [null, thisUsersCode],
                     (err, results) => {
                         if (err) return console.error(err);
@@ -208,7 +208,7 @@ router.post("/partner-up", (req,res) => {
                             // Reserializes user to update info
                             req.login(results.rows[0], (error) => {
                                 if(error) return console.error(error);
-                                return res.redirect("/home");
+                                return res.redirect("/");
                             })
                         }
                     );

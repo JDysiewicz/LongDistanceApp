@@ -6,7 +6,6 @@ import DepartnerButton from "./DepartnerButton.js";
 const Header = (props) => {
     return(
         <div className="header-home ui">
-
             <div className="header-logo">
                 <h1>LDR</h1>
             </div>

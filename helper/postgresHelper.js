@@ -11,14 +11,18 @@ const insertMessage = ({message, sender_partner_code, recipient_partner_code, ti
 };
 
 const changeUserNick = ({newNick, partner_code}) => {
-    pool.query(
-        `UPDATE users SET nickname = $1 WHERE partner_code = $2 RETURNING *`,
-        [newNick, partner_code],
-        (err, results) => {
-            if(err) return console.error(err);
-            console.log("Nickname Updated", results.rows)
-        }
-    );
+    return new Promise( (resolve,reject) => {
+        pool.query(
+            `UPDATE users SET nickname = $1 WHERE partner_code = $2 RETURNING *`,
+            [newNick, partner_code],
+            (err, results) => {
+                if(err) return reject(new Error(err));
+                console.log("Nickname Updated", results.rows)
+                return resolve(results.rows[0]);
+            }
+        );
+    });
+
 };
 
 module.exports = { insertMessage, changeUserNick };

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const LogoutButton = () => {
     return (
         <form method="POST" action="/api/logout" className="ui form">

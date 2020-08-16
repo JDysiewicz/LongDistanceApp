@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles/message.css";
 
 const Message = ({user, sender, time, messageInfo}) =>{
-    console.log(sender)
     if(user.nickname === sender){
         return (
             <div className="comment user-comment">
@@ -13,7 +12,7 @@ const Message = ({user, sender, time, messageInfo}) =>{
                     <div className="metadata">
                         {time}
                     </div>
-                    <div className="text">{messageInfo}</div>
+                    <div className="text user-text">{messageInfo}</div>
                 </div>
             <a style={{marginLeft: "15px"}} className="avatar user-avatar">
                 <img alt="avatar" src="https://semantic-ui.com/images/avatar/small/matt.jpg"></img>
