@@ -1,5 +1,5 @@
 # LongDistanceApp
-A webapp for those in long distance relationships. Currently functinos as a chat app similar to whatsapp/messanger where accounts can be linked. In the future this will also support more features useful to a long distance relationship, such as a sync-ed calendar etc...
+A webapp for those in long distance relationships. Currently functinos as a chat app similar to whatsapp/messanger where accounts can be linked. In the future this will also support more features useful to a long distance relationship, such as a sync-ed calendar etc... Online status added now
 
 ## Usage
 Backend server: run "npm start" in the root of the project.
@@ -11,4 +11,6 @@ To change nicknames, type the commands "!myNick=\<nickname\>" or "!partnerNick=\
 ## Known bugs
 - Must refresh the page to see the request from another account
 - After accepting a request will be automatically sent to "/home", however will display an error. Refreshing the page fixes this, and this only occurs on the inital acceting of the request.
-- Nicknames do not update until relogging.
+  - Fixed [x]
+- Nicknames do not update until relogging - could fix by restructuring of the sockets; make it on a higher level and feed the socket info down, then update everything through that.
+- For some reason, all message containers are left aligned on some mobile devices despite not being on others/computers.
