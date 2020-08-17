@@ -17,7 +17,14 @@ router.post("/upload",upload.single("avatar"), (req,res) => {
         const base64 = imageMinified.toString("base64");
         
         // Store in cloudinary database
-        cloudinary.uploader.upload(`data:image/jpeg;base64,${base64}`, (err, results) => {
+        cloudinary.uploader.upload(`data:image/jpeg;base64,${base64}`, {
+            transformation: {
+                width: 35,
+                height: 35,
+                crop: "scale",
+                quality: 20
+            }
+        }, (err, results) => {
             if(err) console.error(err);
 
             // If successful, attempt to update avatar of user with the link to the image
