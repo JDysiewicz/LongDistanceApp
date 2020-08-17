@@ -9,6 +9,7 @@ const { cloudinary, imageCompress } = require("../services/cloudinaryConfig.js")
 
 
 router.post("/upload",upload.single("avatar"), (req,res) => {
+    if(!req.file.buffer) return redirect("/");
     return new Promise( async (resolve, reject) => {
         const user = req.user;
         const imageMinified = await imageCompress(req.file.buffer);
