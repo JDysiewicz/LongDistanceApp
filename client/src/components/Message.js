@@ -3,7 +3,7 @@ import "./styles/message.css";
 
 const Message = ({user, partner, sender, time, messageInfo}) =>{
     if(user.nickname === sender){
-        const userImageSrc = user.avatar ? `${process.env.PUBLIC_URL}/images/${user.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
+        const userImageSrc = user.avatar ? `${user.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
         return (
             <div className="comment user-comment">
                 <div className="content user-content">
@@ -22,7 +22,7 @@ const Message = ({user, partner, sender, time, messageInfo}) =>{
         );    
     };
 
-    const partnerImageSrc = partner.avatar ? `${process.env.PUBLIC_URL}/images/${partner.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
+    const partnerImageSrc = partner.avatar ? `${partner.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
     return(
         <div className="comment partner-comment">
             <a className="avatar partner-avatar">
