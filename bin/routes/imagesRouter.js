@@ -21,7 +21,7 @@ router.post("/upload",upload.single("avatar"), (req,res) => {
             transformation: {
                 width: 35,
                 crop: "scale",
-                quality: 70
+                quality: 100
             }
         }, (err, results) => {
             if(err) console.error(err);
