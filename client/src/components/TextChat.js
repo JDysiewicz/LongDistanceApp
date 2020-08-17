@@ -8,8 +8,8 @@ import io from "socket.io-client";
 import axios from "axios";
 import "../components/styles/textchat.css";
 // Client side socket behaviour
-const ENDPOINT = "limitless-sands-03990.herokuapp.com/";
-// const ENDPOINT = "localhost:5000";
+// const ENDPOINT = "limitless-sands-03990.herokuapp.com/";
+const ENDPOINT = "localhost:5000";
 
 let socket = io(ENDPOINT);
 
