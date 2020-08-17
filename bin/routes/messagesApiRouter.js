@@ -2,7 +2,6 @@ const { Router } = require("express");
 const pool = require("../services/postgresConfig.js");
 const router = Router();
 const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 
 router.get("/", (req,res) => {

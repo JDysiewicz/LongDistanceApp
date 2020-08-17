@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 const socketio = require("socket.io");
 const http = require("http");
 const server = http.createServer(app);
-const io = socketio(server)
+const io = socketio(server);
 
 
 io.on("connection", socket => {
