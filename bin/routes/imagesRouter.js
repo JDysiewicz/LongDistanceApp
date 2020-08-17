@@ -20,9 +20,8 @@ router.post("/upload",upload.single("avatar"), (req,res) => {
         cloudinary.uploader.upload(`data:image/jpeg;base64,${base64}`, {
             transformation: {
                 width: 35,
-                height: 35,
                 crop: "scale",
-                quality: 50
+                quality: 70
             }
         }, (err, results) => {
             if(err) console.error(err);
