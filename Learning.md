@@ -112,6 +112,8 @@ if(env === "development"){
 
 - Profile pics done! Ended up just using `Multer` to store images on disk and then giving the `<img>` tags in react access to that file to get images from (16/08/2020)
 
+- Now profile pics done via cloudinary database rather than local disk storage via Multer! Problem is the quality is kinda low (Ned to decrease compression) but upload speed is kinda slow on mobile and dont want to hit a timeout, so right now uploading takes like 2min on mobile and quality isnt that great (17/08/2020)
+
 ## Front end stuff
 - Hooking up backend and front end was harder than expected - was originally rendering HTMl with the backend so it was easy to do database calls and such within that before rendering it.
 - Had to use react router to sort out the routing, and using the backend as purely an API
