@@ -1,16 +1,17 @@
+
+// Imports for handling form data
 const { Router } = require("express");
 const pool = require("../services/postgresConfig.js");
 const router = Router();
 const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({extended: false});
-const multer = require("multer");
-const upload = multer({dest: "../client/public/images"});
 
+// Gets current user
 router.get("/current_user", (req,res) => {
     res.send(req.user);
 });
 
+// Gets the partner of the current user
 router.get("/partner",  (req,res) => {
     pool.query(
         `SELECT * FROM users WHERE partner_code=$1`,
@@ -23,6 +24,7 @@ router.get("/partner",  (req,res) => {
     );
 });
 
+// Logs user out
 router.post("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
@@ -91,20 +93,6 @@ router.post("/decline-request", (req,res) => {
         }
     );
 });
-
-router.post("/changepic", upload.single("avatar"), (req, res) => {
-    const user = req.user.partner_code;
-    pool.query(
-        `UPDATE users SET avatar=$1 WHERE partner_code=$2 RETURNING *`,
-        [req.file.filename, user],
-        (err, results) => {
-            if (err) console.error(err);
-            console.log("Profile picture updated", results.rows);
-            return res.redirect("/");
-        }
-    );
-});
-
 
 
 // DePartner the couple

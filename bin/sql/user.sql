@@ -9,5 +9,5 @@ CREATE TABLE users(
     sent_request VARCHAR(64) DEFAULT NULL,
     has_request VARCHAR(64) DEFAULT NULL,
     nickname VARCHAR(64),
-    avatar VARCHAR(64) DEFAULT NULL
+    avatar VARCHAR(256) DEFAULT NULL
 );

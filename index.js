@@ -13,7 +13,6 @@ const path = require("path");
 // Create express app
 const express = require("express");
 const app = express();
-const { static } = require("express");
 
 // CORS stuff
 app.use(function(req, res, next) {
@@ -38,15 +37,13 @@ app.use(passport.session());
 const authRouter = require("./bin/routes/authRouter.js");
 const userApiRouter = require("./bin/routes/userApiRouter.js");
 const messagesApiRouter = require("./bin/routes/messagesApiRouter.js");
-
+const imagesRouter = require("./bin/routes/imagesRouter.js");
 
 // Use each router
 app.use("/auth/google", authRouter);
 app.use("/api", userApiRouter);
 app.use("/api/messages", messagesApiRouter);
-
-// The images route will recreate images found in the /uploads folder
-app.use("/images", static("./images"));
+app.use("/api/images", imagesRouter);
 
 
 // For Production
