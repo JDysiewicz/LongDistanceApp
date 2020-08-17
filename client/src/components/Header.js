@@ -3,9 +3,10 @@ import "./styles/header.css";
 import LogoutButton from "./LogoutButton.js";
 import DepartnerButton from "./DepartnerButton.js";
 
-const Header = (props) => {
+const Header = () => {
     return(
         <div className="header-home ui">
+
             <div className="header-logo">
                 <h1>LDR</h1>
             </div>
@@ -14,6 +15,7 @@ const Header = (props) => {
                 <DepartnerButton />
                 <LogoutButton />
             </div>
+            
         </div>
     );
 };

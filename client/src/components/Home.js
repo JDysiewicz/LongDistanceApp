@@ -1,35 +1,35 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
 import Header from "./Header.js";
 import HomeBody from "./HomeBody.js";
 
-class Home extends Component{
-    constructor(props){
-        super(props);
-        this.state = {user: this.props.user, partner: null};
-    };
+const Home = (props) => {
+    const [partner, setPartner] = useState(null);
 
-    componentDidMount(){
+    useEffect( () => {
         axios.get("/api/partner")
-         .then(res => this.setState({partner: res.data}))
+         .then(res => setPartner(res.data))
          .catch(err => console.error(err))
-    };
+    }, []);
 
-    render(){
-        if(!this.state.user.has_partner){
-            return <Redirect to="/" />;
-        } else if(this.state.partner === null){
-            return <div></div>
-        } else{
-            return (
-                <div style={{maxWidth:"100vw", maxHeight:"10vh"}}>
-                    <Header user={this.state.user} partner={this.state.partner} />
-                    <HomeBody user={this.state.user} partner={this.state.partner}/>
-                </div>
-            );
-        }
+    if(!props.user.has_partner){
+        // Home is a private route only if partnered
+        return <Redirect to="/" />;
+
+    } else if(partner === null){
+        // Return plain div when fetching partner info
+        return <div></div>
+        
+    } else{
+        return (
+            <div style={{maxWidth:"100vw", maxHeight:"10vh"}}>
+                <Header user={props.user} partner={partner} />
+                <HomeBody user={props.user} partner={partner}/>
+            </div>
+        );
     };
 };
+
 
 export default Home;

@@ -33,7 +33,12 @@ router.post("/upload",upload.single("avatar"), (req,res) => {
                 (error, resultsSql) => {
                     if(error) return reject(error);
                     console.log("Updated user: ", resultsSql.rows);
-                    return resolve(res.redirect("/"));
+
+                    // Reserialize to update profile picture
+                    req.login(resultsSql.rows[0], (error) => {
+                        if(error) return console.error(error);
+                        return resolve(res.redirect("/"));
+                    });
                 }
             )
         });

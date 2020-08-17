@@ -15,9 +15,11 @@
 .header-profile-h1{
     display: flex
 }
+
 p{
     margin-right: 10px;
 }
+
 .header-partner-h1{
     display: flex;
     align-items: baseline;

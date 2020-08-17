@@ -11,6 +11,7 @@
     - Add the profile picture to the users as a new column; the value will be the link to it in an image hosting site database probably
     - [x] DONE! .... ONLOCALHOST
     - Problem is that Mutler can't create the images directory on heroku server as it is read only - therefore need to use Cloudinary to stor eimages and store instead the avatar as a link to the api route.
+    - Done via cloudinary - quality kinda low and takes a while to upload but still!!! [x]
 
 - Online status - NO CLUE WHERE TO START WITH THIS; This might be a lost cause - WebSockets.IO would be the best bet but dont know how it'd work with express/react app
     - Got a function to find a user - maybe periodically emit a `"checkIfOnline"` event form socket and return the results of `getUser`?

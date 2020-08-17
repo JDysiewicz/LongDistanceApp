@@ -14,6 +14,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+
 // CORS stuff
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -21,6 +22,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     next();
 });
+
 
 // Passport/Cookie Session setup
 const passport = require("passport");
@@ -38,6 +40,7 @@ const authRouter = require("./bin/routes/authRouter.js");
 const userApiRouter = require("./bin/routes/userApiRouter.js");
 const messagesApiRouter = require("./bin/routes/messagesApiRouter.js");
 const imagesRouter = require("./bin/routes/imagesRouter.js");
+
 
 // Use each router
 app.use("/auth/google", authRouter);

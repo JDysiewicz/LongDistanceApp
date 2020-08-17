@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+
 
 const WriteText = (props) => {
     const textInput = useRef(null);
@@ -10,7 +11,6 @@ const WriteText = (props) => {
             </form>
         </div>
     );
-
 };
 
 

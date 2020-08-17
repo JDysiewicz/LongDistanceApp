@@ -1,5 +1,3 @@
-// UNFINISHED HERE
-
 import React, { useState, useEffect } from "react";
 import TextHeader from "./TextHeader.js";
 import MessageList from "./MessageList.js";
@@ -7,24 +5,22 @@ import WriteText from "./WriteText.js";
 import io from "socket.io-client";
 import axios from "axios";
 import "../components/styles/textchat.css";
-// Client side socket behaviour
-// const ENDPOINT = "limitless-sands-03990.herokuapp.com/";
-const ENDPOINT = "localhost:5000";
+const env = process.env.NODE_ENV || "development";
+let ENDPOINT;
+if(env === "development"){
+    ENDPOINT = "localhost:5000";
+} else {
+    ENDPOINT = "limitless-sands-03990.herokuapp.com/";
+};
 
 let socket = io(ENDPOINT);
 
-
-
-
 const TextChat = (props) => {
-    const [user, setUser] = useState(props.user);
-    const [partner, setPartner] = useState(props.partner)
+    const [user] = useState(props.user);
+    const [partner] = useState(props.partner)
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [activeUser] = useState({...props.user})
-    const [activeUsers, setActiveUsers] = useState([]);
-
-
 
     // Socket initiation useEffect
     useEffect( () => {
@@ -44,8 +40,7 @@ const TextChat = (props) => {
             socket.emit("disconnect", activeUser);
             socket.off()
         };
-    }, [ENDPOINT]);
-
+    }, [user, activeUser]);
 
     // Upon receiving a logged in/out message from the server - CONSOLE LOG FOR NOW, WANT SOME SORT OF ALERT FOR EVERYONE THAT PERSON WENT OFFLINE
     useEffect( () => {
@@ -63,7 +58,6 @@ const TextChat = (props) => {
     });
 
     // Run whenever messages updated - if only run at setup will replace the messages array with a new message every time and not append it
-    // Still not too sure on why it wouldnt work to add an event handler on the inital setup, then not update it until the page is reloaded - why is a new event handler needed every time to prevent the whole messages array reloading?
     useEffect( () =>{
         socket.on("message", (message) => {
             setMessages([...messages, message]);
@@ -72,6 +66,7 @@ const TextChat = (props) => {
             socket.off("message");
         };
     }, [messages]);
+
 
     const sendMessage = (e, target) => {
         e.preventDefault();
@@ -84,11 +79,6 @@ const TextChat = (props) => {
 
     const scrollToBottom = (scrollRef) => {
         scrollRef.scrollIntoView();
-    };
-
-    const setNickname = (e, target) => {
-        e.preventDefault();
-
     };
 
     return(
@@ -116,5 +106,6 @@ const TextChat = (props) => {
         </div>
     );
 };
+
 
 export default TextChat;

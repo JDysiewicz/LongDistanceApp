@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles/message.css";
 
 const Message = ({user, partner, sender, time, messageInfo}) =>{
+
+    // Format the users messages
     if(user.nickname === sender){
         const userImageSrc = user.avatar ? `${user.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
         return (
             <div className="comment user-comment">
                 <div className="content user-content">
-                    <a className="author">
+                    <a href="/" className="author">
                         {sender}
                     </a>
                     <div className="metadata">
@@ -15,21 +17,22 @@ const Message = ({user, partner, sender, time, messageInfo}) =>{
                     </div>
                     <div className="text user-text">{messageInfo}</div>
                 </div>
-            <a style={{marginLeft: "15px"}} className="avatar user-avatar">
+            <a href="/" style={{marginLeft: "15px"}} className="avatar user-avatar">
                 <img alt="avatar" src={userImageSrc}></img>
             </a>
             </div>
         );    
     };
 
+    // Format the partners messages
     const partnerImageSrc = partner.avatar ? `${partner.avatar}` : "https://semantic-ui.com/images/avatar/small/matt.jpg";
     return(
         <div className="comment partner-comment">
-            <a className="avatar partner-avatar">
+            <a href="/" className="avatar partner-avatar">
                 <img alt="avatar" src={partnerImageSrc}></img>
             </a>
             <div className="content partner-content">
-                <a className="author">
+                <a href="/" className="author">
                     {sender}
                 </a>
                 <div className="metadata">

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoggedIn from "./LoggedIn.js";
 import { Redirect } from "react-router";
+
 
 const enterOAuth = (e) => {
     e.preventDefault();
@@ -9,30 +10,28 @@ const enterOAuth = (e) => {
 
 };
 
-class HomeUnlogged extends Component {
-    state = {user: null};
-
-    componentDidMount(){
+const HomeUnlogged =  () => {
+    const [user, setUser] = useState(undefined);
+    useEffect( () => {
         axios.get("/api/current_user")
-         .then(res => this.setState({user: res.data}))
-    };
+         .then(res => setUser(res.data));
+    }, []);
 
-    render(){
-        let returnedContent = undefined;
-        if (!this.state.user){
-            returnedContent =(
-                <div className = "ui active dimmer">
-                    <button onClick={e => enterOAuth(e)} className="ui button">Sign In With Google</button>
-                </div>
-            );
-        } else if (this.state.user.has_partner === null){
-            returnedContent = (
-                <LoggedIn user={this.state.user}/>
-            );
-        } else {
-            return <Redirect to="/home" />
-        }
-        return returnedContent;
+
+    if (!user){
+        return (
+            <div className = "ui active dimmer">
+                <button onClick={e => enterOAuth(e)} className="ui button">Sign In With Google</button>
+            </div>
+        );
+
+    } else if (user.has_partner === null){
+        return(
+            <LoggedIn user={this.state.user}/>
+        );
+
+    } else {
+        return <Redirect to="/home" />
     };
 };
 

@@ -3,16 +3,19 @@ const { insertMessage, changeUserNick }  = require("../helper/postgresHelper.js"
 const app = require("../index.js");
 const PORT = process.env.PORT || 5000;
 
+
 // WebSocket Stuff
 const socketio = require("socket.io");
 const http = require("http");
 const server = http.createServer(app);
 const io = socketio(server)
+
+
 io.on("connection", socket => {
     console.log("new connection!");
-    let activeUser;
+    
     socket.on("join", ({user}, callback) => {
-        const { success, error } = addUser({user, socketId: socket.id});
+        const { error } = addUser({user, socketId: socket.id});
         if (error){
             console.error(error)
             callback({error});
