@@ -2,7 +2,7 @@
 const env = process.env.NODE_ENV || "development";
 let CONFIG;
 if(env === "development"){
-    CONFIG = require("../../secrets/cloudinary.js");
+    CONFIG = require("../../secrets/keys.js").CLOUDINARY_URL;
 } else {
     CONFIG = process.env.CLOUDINARY_URL;
 };
