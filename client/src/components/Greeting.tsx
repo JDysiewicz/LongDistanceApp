@@ -1,6 +1,11 @@
 import React from "react"
+import { User } from "../types"
 
-const Greeting = (props: any) => {
+interface GreetingProps {
+  user: User
+}
+
+const Greeting: React.FC<GreetingProps> = (props: GreetingProps) => {
   // Format partner code for display
   const partnerCode = props.user.partner_code.split("-").join("")
   return (

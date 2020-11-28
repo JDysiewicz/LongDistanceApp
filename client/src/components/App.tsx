@@ -6,6 +6,8 @@ import axios from "axios"
 
 import { User } from "../types"
 
+import UserContext from "../UserContext"
+
 const App = () => {
   const [user, setUser] = useState<User | undefined>(undefined)
   useEffect(() => {
