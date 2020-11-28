@@ -1,0 +1,20 @@
+{
+    "extends": [
+      "tslint:recommended",
+      "tslint-react",
+      "tslint-config-prettier"
+    ],
+    "rulesDirectory": [
+      "tslint-plugin-prettier"
+    ],
+    "rules": {
+      "prettier": true,
+      "interface-name": false,
+      "no-console": false,
+      "jsx-no-lambda": false,
+      "no-any": true,
+      "no-unnecessary-type-assertion": true,
+      "await-promise": true,
+      "no-async-without-await": true
+    }
+  }

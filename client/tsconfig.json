@@ -4,7 +4,6 @@
     "module": "esnext",
     "allowJs": true,
     "checkJs": true,
-    "noImplicitAny": false,
     "jsx": "react",
     "outDir": "dist",
     "rootDir": "src",
@@ -18,13 +17,18 @@
     ],
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "alwaysStrict": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
   },
   "include": [
-    "src"
+    "src/**/*.{ts,tsx}"
   ]
 }
