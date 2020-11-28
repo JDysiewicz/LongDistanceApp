@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-const SendRequest = (props) => {
+const SendRequest = () => {
     const [inputText, setInputText] = useState("");
 
     return (

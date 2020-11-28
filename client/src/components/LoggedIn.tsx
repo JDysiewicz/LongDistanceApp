@@ -1,9 +1,9 @@
 import React from "react";
-import Greeting from "./Greeting.js"
-import SendRequest from "./SendRequest.js";
-import PendingRequest from "./PendingRequest.js";
-import HasRequest from "./HasRequest.js";
-import LogoutButton from "./LogoutButton.js";
+import Greeting from "./Greeting"
+import SendRequest from "./SendRequest";
+import PendingRequest from "./PendingRequest";
+import HasRequest from "./HasRequest";
+import LogoutButton from "./LogoutButton";
 
 
 const LoggedIn = (props) => {

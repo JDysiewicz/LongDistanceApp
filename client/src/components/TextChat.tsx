@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import TextHeader from "./TextHeader.js";
-import MessageList from "./MessageList.js";
-import WriteText from "./WriteText.js";
+import TextHeader from "./TextHeader";
+import MessageList from "./MessageList";
+import WriteText from "./WriteText";
 import io from "socket.io-client";
 import axios from "axios";
 import "../components/styles/textchat.css";
@@ -19,7 +19,7 @@ const TextChat = (props) => {
     const [user] = useState(props.user);
     const [partner] = useState(props.partner)
     const [message, setMessage] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<any>([]);
     const [activeUser] = useState({...props.user})
 
     // Socket initiation useEffect
@@ -38,7 +38,7 @@ const TextChat = (props) => {
         return () => {
             // Turn off the socket when user disconnects
             socket.emit("disconnect", activeUser);
-            socket.off()
+            socket.close()
         };
     }, [user, activeUser]);
 
@@ -96,8 +96,8 @@ const TextChat = (props) => {
 
             <div className="image upload">
 
-                <form method="POST" action="/api/images/upload" enctype="multipart/form-data">
-                    <label for="avatar"></label>
+                <form method="POST" action="/api/images/upload" encType="multipart/form-data">
+                    <label htmlFor="avatar"></label>
                     <input id="file-upload" name="avatar" type="file"></input>
                     <input type="submit" value="Change profile picture"></input>
                 </form>

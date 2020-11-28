@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/header.css";
-import LogoutButton from "./LogoutButton.js";
-import DepartnerButton from "./DepartnerButton.js";
+import LogoutButton from "./LogoutButton";
+import DepartnerButton from "./DepartnerButton";
 
 const Header = () => {
     return(

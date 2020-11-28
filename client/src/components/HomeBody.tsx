@@ -1,5 +1,5 @@
 import React from "react";
-import TextChat from "./TextChat.js";
+import TextChat from "./TextChat";
 import "./styles/homebody.css";
 
 

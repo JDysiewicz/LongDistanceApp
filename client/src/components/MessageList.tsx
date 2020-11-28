@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./styles/messagelist.css";
-import Message from "./Message.js";
+import Message from "./Message";
 
 const MessageList = ({messages, scroll, user, partner}) => {
     const scrollRef = useRef(null);

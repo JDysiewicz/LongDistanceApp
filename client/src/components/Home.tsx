@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
-import Header from "./Header.js";
-import HomeBody from "./HomeBody.js";
+import Header from "./Header";
+import HomeBody from "./HomeBody";
 
 const Home = (props) => {
     const [partner, setPartner] = useState(null);
@@ -24,7 +24,7 @@ const Home = (props) => {
     } else{
         return (
             <div style={{maxWidth:"100vw", maxHeight:"10vh"}}>
-                <Header user={props.user} partner={partner} />
+                <Header />
                 <HomeBody user={props.user} partner={partner}/>
             </div>
         );

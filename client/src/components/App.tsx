@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import HomeUnlogged from "./HomeUnlogged.js";
-import Home from "./Home.js";
+import HomeUnlogged from "./HomeUnlogged";
+import Home from "./Home";
 import axios from "axios";
 
 
